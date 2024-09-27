@@ -1,4 +1,6 @@
-export type Champion = {
+// https://ddragon.leagueoflegends.com/cdn/14.19.1/data/ko_KR/champion.json
+
+export interface Champion {
   id: string; // 챔피언 ID
   name: string; // 챔피언 이름
   title: string; // 챔피언 제목
@@ -12,16 +14,22 @@ export type Champion = {
     w: number; // 이미지 너비
     h: number; // 이미지 높이
   };
-};
+}
 
 // 상세 정보 타입 정의
-export type ChampionDetail = Champion & {
-  // 'extends' 대신 '&' 사용
+export interface ChampionDetail extends Champion {
   lore: string; // 챔피언 배경 이야기
+  stats: {
+    attack: number; // 공격력
+    defense: number; // 방어력
+    magic: number; // 마법력
+    difficulty: number; // 난이도
+  };
   abilities: Ability[]; // 챔피언의 능력 목록
-};
+}
 
-type Ability = {
-  name: string; // 능력 이름
-  description: string; // 능력 설명
-};
+interface Ability {
+  name: string; // 스킬 이름
+  description: string; // 스킬 설명
+  cooldown: number; // 스킬 쿨타임
+}

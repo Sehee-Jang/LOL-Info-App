@@ -1,3 +1,5 @@
+// https://ddragon.leagueoflegends.com/cdn/14.19.1/data/ko_KR/item.json
+
 export type Item = {
   id: string; // 아이템 ID
   name: string; // 아이템 이름
