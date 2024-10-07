@@ -1,7 +1,11 @@
 import React from "react";
 
-const RotationPage = () => {
-  return <div>Rotation Page입니다.</div>;
+const RotationPage = async () => {
+  return (
+    <div>
+      <p>RotationPage 페이지입니다.</p>
+    </div>
+  );
 };
 
 export default RotationPage;
