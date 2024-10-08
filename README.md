@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#리그 오브 레전드 정보 앱
 
-## Getting Started
+## 1. 프로젝트 소개
 
-First, run the development server:
+이 프로젝트는 Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 챔피언 로테이션 정보를 제공하는 웹 애플리케이션입니다. 사용자는 앱을 통해 챔피언의 기본 정보, 아이템의 상세 정보, 무료 로테이션 챔피언 목록을 확인할 수 있습니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 2. 프로젝트 목적
+
+Riot Games API를 활용한 데이터 통신 및 시각화를 실습하고, React와 Next.js의 SSR/CSR 기능을 활용한 웹 애플리케이션 구축을 목표로 합니다. 또한, 사용자 인터랙션에 따른 페이지 전환 및 상태 관리를 구현하여 React의 활용 능력을 강화하고자 합니다.
+
+## 3. 주요 기능
+
+- **챔피언 목록**: 리그 오브 레전드의 모든 챔피언 목록을 보여주고, 클릭 시 상세 정보 페이지로 이동.
+- **챔피언 상세 정보**: 선택한 챔피언의 스탯, 스토리, 이미지 등을 상세히 보여줌.
+- **아이템 목록**: 리그 오브 레전드의 모든 아이템 목록과 가격, 설명을 표시.
+- **챔피언 로테이션**: 매주 변경되는 무료 로테이션 챔피언 목록을 제공.
+
+## 4. 개발기간
+
+- **개발 기간**: 2024년 10월 1일 ~ 2024년 10월 10일 (총 10일)
+
+## 5. 기술 스택
+
+- **프론트엔드**: React, Next.js, Tailwind CSS
+- **백엔드**: Riot Games API, Node.js (json-server로 mock 데이터 사용)
+- **상태 관리**: React Hooks, useEffect
+- **이미지 처리**: Next.js Image 컴포넌트
+- **API 통신**: Axios
+
+## 6. API 명세서
+
+- **챔피언 목록 조회**: `/champions`
+  - 리그 오브 레전드 챔피언 목록을 반환
+- **챔피언 상세 조회**: `/champions/:id`
+  - 선택된 챔피언의 세부 정보를 반환
+- **아이템 목록 조회**: `/items`
+  - 리그 오브 레전드 아이템 목록을 반환
+- **챔피언 로테이션 조회**: `/rotation`
+  - 무료 챔피언 로테이션 정보를 반환
+
+7. 프로젝트 파일 구조
+
+```
+📁 app
+ ┣ 📁 champions
+ ┃ ┣ 📄 [id]/page.tsx      # 챔피언 상세 페이지
+ ┃ ┗ 📄 page.tsx           # 챔피언 목록 페이지
+ ┣ 📁 items
+ ┃ ┗ 📄 page.tsx           # 아이템 목록 페이지
+ ┣ 📁 rotation
+ ┃ ┗ 📄 page.tsx           # 챔피언 로테이션 페이지
+ ┣ 📄 page.tsx              # 홈 페이지
+📁 utils
+ ┣ 📄 riotApi.ts            # Riot API 호출 함수
+ ┣ 📄 serverApi.ts          # 서버 API 호출 함수
+📁 types
+ ┣ 📄 Champion.ts           # 챔피언 타입 정의
+ ┗ 📄 Item.ts               # 아이템 타입 정의
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 8. Trouble Shooting
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **챔피언 로테이션 정보가 안 불러와지는 문제**
+   - 초기에는 로테이션 정보를 가져오는 API 호출에서 데이터를 제대로 불러오지 못했음. useEffect 내부에서 async 함수를 바로 호출하지 않아 발생한 문제였고, 이를 해결하기 위해 즉시 실행 함수를 추가하여 해결.
+2. **이미지 경로 설정 오류**
+   - Riot Games API에서 받은 챔피언 이미지 경로가 전체 URL이 아닌 파일명만 반환되어, 이미지 경로를 수동으로 구성하여 문제를 해결함.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 9. Project Remind & 프로젝트 소감
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이 프로젝트를 통해 Riot Games API와 Next.js를 사용하는 방법에 대해 깊이 학습할 수 있었습니다. API에서 데이터를 가져와 시각적으로 표현하는 과정과 SSR/CSR을 활용한 최적화된 렌더링 방식에 대한 이해도를 높일 수 있었습니다. 또한, Tailwind CSS를 활용한 스타일링과 이미지 최적화 방법도 익히게 되어 전반적인 프론트엔드 개발 능력이 향상되었습니다. 앞으로 더 많은 외부 API를 활용하여 다양한 기능을 추가하는 프로젝트에 도전하고 싶습니다.

@@ -28,16 +28,13 @@ export async function getChampions() {
     const data = await response.json();
 
     // 응답 확인
-    console.log("Champion Data:", data); // API 응답 전체 데이터 로그
-    console.log("Champions List:", data.data); // 챔피언 목록만 로그
+    // console.log("Champion Data:", data); // API 응답 전체 데이터 로그
+    // console.log("Champions List:", data.data); // 챔피언 목록만 로그
 
     // 챔피언 ID 검증
     const championKeys = Object.keys(data.data);
-    console.log("Available Champion IDs:", championKeys);
+    // console.log("Available Champion IDs:", championKeys);
 
-    // const champions: Champion[] = Object.values(data.data);
-    // console.log("Champion Data: ", champions);
-    // return champions;
     return data.data;
   } catch (error) {
     console.error("getChampions() Error: ", error);
@@ -71,9 +68,6 @@ export async function getChampionDetail(championName: string) {
 
     // 해당 챔피언에 대한 URL 생성
     const championUrl = `${BASE_URL}/${version}/data/ko_KR/champion/${championKey}.json`;
-
-    // // 챔피언 상세 정보를 반환
-    // return championsData.data[championKey];
 
     // 챔피언 상세 정보를 가져옴
     const championResponse = await fetch(championUrl);
