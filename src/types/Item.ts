@@ -14,11 +14,6 @@ export interface Item {
   };
   image: {
     full: string; // 이미지 파일명
-    sprite: string; // 스프라이트 이미지 파일명
-    group: string; // 이미지 그룹 (예: 챔피언)
-    x: number; // 이미지 x 좌표
-    y: number; // 이미지 y 좌표
-    w: number; // 이미지 너비
-    h: number; // 이미지 높이
   };
+  tags: string[];
 }

@@ -2,31 +2,34 @@ import { getChampionDetail, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
 import React from "react";
 
-const ChampionDetailPage = async ({ params }: { params: { id: string } }) => {
-  const championDetail = await getChampionDetail(params.id);
-  const latestVersion = await getLatestVersion();
+interface ChampionDetailPageProps {
+  params: {
+    id: string;
+  };
+}
 
-  const championKey = Object.keys(championDetail.data)[0]; // championDetail.data의 첫 번째 키를 가져옵니다.
-  const champion = championDetail.data[championKey];
-  console.log("champion.info : ", champion.info);
-  console.log("champion.image : ", champion.image);
+export async function generateMetadata({ params }: ChampionDetailPageProps) {
+  const champion = await getChampionDetail(params.id);
+  return {
+    title: `${champion.name} -  이 페이지의 주인공`,
+    description: champion.title,
+  };
+}
+export default async function ChampionDetailPage({
+  params,
+}: ChampionDetailPageProps) {
+  const champion = await getChampionDetail(params.id);
 
-  // image 속성에 대한 타입을 명시적으로 좁히기
-  const image = champion.image as { full: string };
-
-  if (!champion || !champion.info) {
-    return <div>챔피언 정보를 불러오는 중 오류가 발생했습니다.</div>;
-  }
   return (
     <div className='container mx-auto p-4'>
       <h1 className='text-3xl font-bold mb-2'>{champion.name}</h1>
       <p className='text-xl text-gray-600'>{champion.title}</p>
       <Image
-        src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${image.full}`}
+        src={`https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${champion.id}_0.jpg`}
         alt={`${champion.name}`}
-        width={200}
-        height={200}
-        className='rounded-md my-4'
+        width={500}
+        height={500}
+        className='mx-auto rounded'
       />
       <p>{champion.lore}</p>
       <h2 className='text-2xl font-bold mt-4'>스탯:</h2>
@@ -38,6 +41,4 @@ const ChampionDetailPage = async ({ params }: { params: { id: string } }) => {
       </ul>
     </div>
   );
-};
-
-export default ChampionDetailPage;
+}
