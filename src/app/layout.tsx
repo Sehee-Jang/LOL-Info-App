@@ -32,30 +32,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        {/* <nav className='bg-gray-800 text-white p-4'>
-          <ul className='flex space-x-6 justify-center'>
-            <li>
-              <Link href='/' className='hover:text-gray-400'>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href='/champions' className='hover:text-gray-400'>
-                Champions
-              </Link>
-            </li>
-            <li>
-              <Link href='/items' className='hover:text-gray-400'>
-                Items
-              </Link>
-            </li>
-            <li>
-              <Link href='/rotation' className='hover:text-gray-400'>
-                Rotation
-              </Link>
-            </li>
-          </ul>
-        </nav> */}
         <main>{children}</main>
       </body>
     </html>

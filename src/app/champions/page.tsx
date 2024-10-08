@@ -10,7 +10,7 @@ const ChampionsPage = async () => {
 
   return (
     <div className='container mx-auto p-4'>
-      <h2 className='text-2xl font-bold mb-4'>챔피언 목록</h2>
+      <h1 className='text-3xl font-bold mb-6 text-center'>챔피언 목록</h1>
       <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {champions.map((champion) => {
           return <ChampionCard champion={champion} />;

@@ -7,7 +7,7 @@ interface Props {
 }
 export default function ChampionCard({ champion }: Props) {
   return (
-    <div className='border rounded-lg p-4 text-center'>
+    <div className='border rounded-lg p-4 text-center bg-white shadow transition-transform duration-300 hover:shadow-lg hover:-translate-y-1'>
       <Link href={`/champions/${champion.id}`} key={champion.id}>
         <Image
           src={`https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${champion.id}_0.jpg`}
@@ -16,10 +16,11 @@ export default function ChampionCard({ champion }: Props) {
           height={150}
           className='mx-auto rounded'
         />
-        <h2 className='text-xl font-semibold mt-2'>{champion.name}</h2>
+        <h2 className='text-xl font-semibold mt-2 text-primary'>
+          {champion.name}
+        </h2>
         <p className='text-gray-500'>{champion.title}</p>
       </Link>
-      </div>
-      
+    </div>
   );
 }
